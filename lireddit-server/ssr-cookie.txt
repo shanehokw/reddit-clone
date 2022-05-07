@@ -1,0 +1,9 @@
+ssr 
+    browser -> next.js -> graphql-api
+
+client side request
+    browser -> graphql-api
+
+*browser will automatically send cookies to next one 
+*in ssr browser sends to next.js server but next.js doesn't do anything with it. it's gone when next.js makes request to graphql-api
+*so we make next.js server send cookie to graphql-api

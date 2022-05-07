@@ -1,0 +1,23 @@
+req.session.userId = user.id
+↓ take any data that is stuck on session object, save to redis
+{userId: 1} -> save to redis. Redis is a key value store: use key to look up values
+
+1
+Key looks like this -> sess: fqfewprypwerw -> { userId: 1 } // maps to object
+
+2
+expres-session will set a cookie on my browser -> oiwrypqq98ypr89q3r983q3423r (encrypted version of key)
+
+3
+when user makes a request
+oiwrypqq98ypr89q3r983q3423r -> sent to server
+
+4
+on browser, encrypted key is decrypted using secret that was set, back into key
+oiwrypqq98ypr89q3r983q3423r -> sess: fqfewprypwerw
+
+5
+make a request to redis
+sess: fqfewprypwerw -> { userId: 1 }
+
+req.session = { userId: 1 }
