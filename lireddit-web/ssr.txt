@@ -1,0 +1,18 @@
+when thinking about when to use Server Side Rendring (ssr) on your pages:
+1. consider SEO, do you want google to know about any data? like posts, content to show up when googled
+ a. doing any queries on the page?
+ b. are those queries important for SEO?
+
+dont use it when
+1. there are things that would benefit from a slightly longer load time, eg: custom load effect
+2. specific content to the user, where they must be logged in to access
+
+how it works:
+me -> make a request to browser http://localhost:3000
+-> make a request to next.js server
+-> make a request to graphql server localhost:4000 to grab all posts
+-> building the HTML
+-> sending back to browser
+
+In next.js, after loading a first ssr page, pages after that will not be ssr (such as going Back to a page), because it does client side routing, 
+because ssr is not done for pages that are already navigated
